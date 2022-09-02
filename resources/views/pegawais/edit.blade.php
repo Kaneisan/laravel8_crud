@@ -33,19 +33,17 @@
                         <label for="exampleInputEmail1">Tanggal Lahir</label>
                         <div class="form-group">
                             <div class='input-group date' id='datetimepicker'>
-                                <input type='text' class="form-control" name="tgllahir" value="{{ $pegawais->tgllahir}}" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
+                                <input type='date' class="form-control" name="tgllahir" value="{{ $pegawais->tgllahir}}" />
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="kelamin">Pilih Jenis Kelamin</label>
                         <div class="col">
-                            <input type="radio" name="kelamin" value="L" {{ $pegawais->kelamin == 'L' ? 'selected' : '' }}>
+                            <input type="hidden" name="kelamin" value="{{$pegawais->kelamin}}">
+                            <input type="radio" name="kelamin" value="L" {{ $pegawais->kelamin == 'L' ? 'checked' : '' }}>
                             <label for="age1">Laki-Laki</label><br>
-                            <input type="radio" name="kelamin" value="P" {{ $pegawais->kelamin == 'L' ? 'selected' : '' }}>
+                            <input type="radio" name="kelamin" value="P" {{ $pegawais->kelamin == 'P' ? 'checked' : '' }}>
                             <label for="age2">Perempuan</label><br>
                         </div>
                     </div>

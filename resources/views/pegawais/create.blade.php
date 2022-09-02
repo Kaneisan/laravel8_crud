@@ -25,21 +25,17 @@
                         <input type="text" class="form-control" name="tempatlahir">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Alamat</label>
-                        <input type="text" class="form-control" name="alamat">
-                    </div>
-                    <div class="form-group">
                         <label for="exampleInputEmail1">Tanggal Lahir</label>
                         <div class="form-group">
-                            <div class='input-group date' id='datetimepicker'>
-                                <input type='text' class="form-control" name="tgllahir" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
+                            <div class='input-group date'>
+                                <input type='date' class="form-control" name="tgllahir"/>
                             </div>
                         </div>
                     </div>
-                    </script>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Alamat</label>
+                        <input type="text" class="form-control" name="alamat">
+                    </div>
                     <div class="form-group">
                         <label for="kelamin">Pilih Jenis Kelamin</label>
                         <div class="col">

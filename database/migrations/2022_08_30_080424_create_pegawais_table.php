@@ -15,7 +15,7 @@ class CreatePegawaisTable extends Migration
     {
         Schema::create('pegawais', function (Blueprint $table) {
             $table->id('id');
-            $table->integer('nip');
+            $table->string('nip');
             $table->string('nama');
             $table->string('tempatlahir');
             $table->string('alamat');
@@ -28,7 +28,7 @@ class CreatePegawaisTable extends Migration
             $table->string('agama');
             $table->string('unitkerja');
             $table->string('nohp');
-            $table->integer('npwp');
+            $table->string('npwp');
             $table->string('image')->default('kosong');
             $table->timestamps();
         });

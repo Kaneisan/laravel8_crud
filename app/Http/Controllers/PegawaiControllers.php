@@ -118,21 +118,13 @@ class PegawaiControllers extends Controller
         $pegawais->unitkerja = $request->input('unitkerja');
         $pegawais->nohp = $request->input('nohp');
         $pegawais->npwp = $request->input('npwp');
-
-        // if (
-        //     $pegawais->featured_image &&
-        //     file_exists(storage_path('app/public/' . $pegawais->image))
-        // ) {
-        //     Storage::delete('public/' . $pegawais->featured_image);
-        // }
-        // $image_name = $request->file('image')->store('images', 'public');
-        // $pegawais->image = $image_name;
-
-        // if ($pegawais->image && file_exists(storage_path('app/public' . $pegawais->image))) {
-        //     Storage::delete('public/' . $pegawais->image);
-        // }
-        // $pegawais_image_name = $request->file('image')->store('images', 'public');
-        // $pegawais->image = $pegawais_image_name;
+        if($request->hasFile('image')){
+            if ($pegawais->image && file_exists(storage_path('app/public' . $pegawais->image))) {
+                Storage::delete('public/' . $pegawais->image);
+            }           
+            $pegawais_image_name = $request->file('image')->store('images', 'public');
+            $pegawais->image = $pegawais_image_name;
+        }
         $pegawais->update();
         return redirect('/pegawais')->with('status', 'Pegawai Berhasil diupdate');
     }
