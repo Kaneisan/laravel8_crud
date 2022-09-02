@@ -8,8 +8,8 @@
                 <div class="card-header">{{ __('Data') }}</div>
 
                 <div class="card-body">
-                <table class="table table-bordered">
-  
+                    <p>Selamat Datang</p>
+                    <p>Ini  adalah halaman Home</p>
                 </div>
             </div>
         </div>

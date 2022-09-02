@@ -14,9 +14,15 @@ class PegawaiControllers extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pegawais = Pegawais::paginate(5);
+        if($request->has('carinama')){
+            $pegawais = Pegawais::where('nama','LIKE','%' .$request->carinama.'%')->paginate(5)   ;
+        }elseif($request->has('cariunitkerja')){
+            $pegawais = Pegawais::where('unitkerja','LIKE','%' .$request->cariunitkerja.'%')->paginate(5)   ;
+        }else{
+            $pegawais = Pegawais::paginate(5);
+        }
         return view('pegawais.index', compact('pegawais'));
     }
 
@@ -96,7 +102,7 @@ class PegawaiControllers extends Controller
     public function update(Request $request, $id)
     {
         $pegawais = Pegawais::find($id);
-        $pegawais = new  Pegawais;
+
         $pegawais->nip = $request->input('nip');
         $pegawais->nama = $request->input('nama');
         $pegawais->tempatlahir = $request->input('tempatlahir');
@@ -122,11 +128,11 @@ class PegawaiControllers extends Controller
         // $image_name = $request->file('image')->store('images', 'public');
         // $pegawais->image = $image_name;
 
-        if ($pegawais->image && file_exists(storage_path('app/public' . $pegawais->image))) {
-            Storage::delete('public/' . $pegawais->image);
-        }
-        $pegawais_image_name = $request->file('image')->store('images', 'public');
-        $pegawais->image = $pegawais_image_name;
+        // if ($pegawais->image && file_exists(storage_path('app/public' . $pegawais->image))) {
+        //     Storage::delete('public/' . $pegawais->image);
+        // }
+        // $pegawais_image_name = $request->file('image')->store('images', 'public');
+        // $pegawais->image = $pegawais_image_name;
         $pegawais->update();
         return redirect('/pegawais')->with('status', 'Pegawai Berhasil diupdate');
     }
@@ -137,12 +143,11 @@ class PegawaiControllers extends Controller
      * @param  \App\Models\Pegawais  $pegawais
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pegawais $pegawais)
+    public function destroy($id)
     {
+        $pegawais = Pegawais::find($id);
         $pegawais->delete();
-
-        return redirect()->route('pegawais.index')
-            ->with('success', 'pegawai deleted successfully');
+        return redirect('/pegawais')->with('status', 'Pegawai Berhasil dihapus');
     }
 
     

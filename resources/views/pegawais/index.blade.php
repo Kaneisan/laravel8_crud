@@ -8,10 +8,21 @@
             <div class="alert alert-sccuess">{{ session('status')}}</div>
             @endif
             <div class="card-header">{{ __('Data Pegawai PNS') }} </div>
-            <div class="col-sm-2"><br>
+            <div class="col-md-4"><br>
+                <div class="col-md-4">
+                    <form action="/pegawais" method="GET">
+                        <input type="carinama" name="carinama" class="form-control" aria-describedby="passwordHelpInline" placeholder="Cari Nama">
+                    </form>
+                    <form action="/pegawais" method="GET">
+                        <input type="cariunitkerja" name="cariunitkerja" class="form-control" aria-describedby="passwordHelpInline" placeholder="Cari Unit Kerja" style="margin: top 2px; ">
+                    </form>
+                </div>
                 <a href="{{url('pegawais/create')}}" type="button" class="btn btn-primary">Tambah Data</a>
                 <a href="/pegawai/cetak_pdf" class="btn btn-primary" target="_blank">CETAK PDF</a>
 
+                <div class="col g-3 align-items-center">
+
+                </div>
             </div>
             <div class="card-body">
                 <table class="table table-bordered">
@@ -34,7 +45,7 @@
                                 <th>No. Hp</th>
                                 <th>NPWP</th>
                                 <th>Profile</th>
-                                <th colspan="3" style="text-align: center;">Aksi</th>
+                                <th colspan="2" style="text-align: center;">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,7 +71,11 @@
                                     <a href="{{ url('pegawais/'.$p->id.'/edit')}}" class="badge bg-warning">Edit</button>
                                 </td>
                                 <td>
-                                    <a href="{{ url('pegawais/delete')}}" type="button" class="badge bg-danger">Delete</button>
+                                    <form action="{{ url('pegawais/'.$p->id)}}"  method="POST">
+                                        @csrf
+                                        @method('DELETE') 
+                                        <button type="submit" class="badge bg-danger">Delete</a>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
